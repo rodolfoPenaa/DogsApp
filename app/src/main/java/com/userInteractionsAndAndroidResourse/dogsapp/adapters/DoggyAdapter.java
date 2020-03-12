@@ -42,6 +42,7 @@ public class DoggyAdapter extends RecyclerView.Adapter<DoggyAdapter.ViewHolder> 
         String breedImageListResponse = dogs.get(position);
         Glide.with(holder.imageView.getContext()).load(breedImageListResponse).into(holder.imageView);
 
+
     }
 
     @Override

@@ -58,13 +58,11 @@ public class BreedImageListFragment extends Fragment {
        RecyclerView recyclerView = view.findViewById(R.id.recycledview);
        adapter = new DoggyAdapter(doggys, getActivity());
        recyclerView.setAdapter(adapter);
-//       recyclerView.setHasFixedSize(true);
+       recyclerView.setHasFixedSize(true);
        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-//        FragmentBreedImageListBinding binding = DataBindingUtil.inflate(inflater,R.layout.fragment_breed_image_list,container,false);
-//        View view = binding.getRoot();
-//        Glide.with(getContext()).load(doggys).centerCrop().into(binding.recyclerviewrecycled);
+
 
         return view;
     }
