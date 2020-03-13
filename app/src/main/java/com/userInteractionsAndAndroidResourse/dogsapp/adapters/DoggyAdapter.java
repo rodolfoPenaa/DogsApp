@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.userInteractionsAndAndroidResourse.dogsapp.MainActivity;
 import com.userInteractionsAndAndroidResourse.dogsapp.R;
+import com.userInteractionsAndAndroidResourse.dogsapp.ui.BreedImageListFragment;
 
 import java.util.ArrayList;
 
@@ -41,7 +44,15 @@ public class DoggyAdapter extends RecyclerView.Adapter<DoggyAdapter.ViewHolder> 
 
         String breedImageListResponse = dogs.get(position);
         Glide.with(holder.imageView.getContext()).load(breedImageListResponse).into(holder.imageView);
+        holder.imageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(mContex , "Added to Favorite", Toast.LENGTH_SHORT).show();
 
+
+                return true;
+            }
+        });
 
     }
 
@@ -62,6 +73,7 @@ public class DoggyAdapter extends RecyclerView.Adapter<DoggyAdapter.ViewHolder> 
         }
     }
     public int getItemCount(ArrayList<String> dogs) {
+
         return dogs.size();
     }
 }
