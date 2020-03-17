@@ -13,21 +13,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
         tools:context=".DetailFragment">
 
         <TextView
             android:id="@+id/breeds"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="@string/choose_a_breed"
             android:textAlignment="center"
             android:textSize="29sp" />
-
+        <ImageButton
+            android:id="@+id/Favorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/favorite" />
         <Spinner
             android:id="@+id/tryspinner"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

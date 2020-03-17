@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.bumptech.glide.Glide;
 import com.userInteractionsAndAndroidResourse.dogsapp.R;
@@ -24,16 +25,17 @@ public class BreedImageListFragment extends Fragment {
     private static String status;
     private static ArrayList<String> doggys;
     private static DoggyAdapter adapter;
-
+    private String raza;
 
     public BreedImageListFragment() {
         // Required empty public constructor
     }
 
-    public static BreedImageListFragment newInstance(ArrayList<String> doggys) {
+    public static BreedImageListFragment newInstance(ArrayList<String> doggys,String choosenBreed) {
         BreedImageListFragment fragment = new BreedImageListFragment();
         Bundle args = new Bundle();
         args.putStringArrayList("DOGS", doggys);
+        args.putString("raza", choosenBreed);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,7 +45,7 @@ public class BreedImageListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             doggys = getArguments().getStringArrayList("DOGS");
-            status = getArguments().getString("STATUS");
+            raza = getArguments().getString("raza");
         }
     }
 
@@ -52,17 +54,11 @@ public class BreedImageListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
        View view = inflater.inflate(R.layout.fragment_breed_list,container,false);
-
-       ArrayList<String> doggys = getArguments().getStringArrayList("DOGS");
-
-       RecyclerView recyclerView = view.findViewById(R.id.recycledview);
-       adapter = new DoggyAdapter(doggys, getActivity());
-       recyclerView.setAdapter(adapter);
-       recyclerView.setHasFixedSize(true);
-       recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-
+        RecyclerView recyclerView = view.findViewById(R.id.recycledview);
+        adapter = new DoggyAdapter(doggys,raza, getActivity());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
     }
