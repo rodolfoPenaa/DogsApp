@@ -2,7 +2,7 @@ package com.userInteractionsAndAndroidResourse.dogsapp.model;
 
 import com.google.firebase.Timestamp;
 
-public class FavoriteDog {
+public class  FavoriteDog {
 
 private String raza;
 private String url;

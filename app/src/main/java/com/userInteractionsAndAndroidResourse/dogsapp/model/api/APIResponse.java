@@ -1,4 +1,4 @@
-package com.userInteractionsAndAndroidResourse.dogsapp.api;
+package com.userInteractionsAndAndroidResourse.dogsapp.model.api;
 import com.userInteractionsAndAndroidResourse.dogsapp.model.BreedImageListResponse;
 import com.userInteractionsAndAndroidResourse.dogsapp.model.BreedListResponse;
 

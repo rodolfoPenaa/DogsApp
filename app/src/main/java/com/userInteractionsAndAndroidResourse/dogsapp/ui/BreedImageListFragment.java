@@ -9,11 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
-import com.bumptech.glide.Glide;
 import com.userInteractionsAndAndroidResourse.dogsapp.R;
-import com.userInteractionsAndAndroidResourse.dogsapp.adapters.DoggyAdapter;
+import com.userInteractionsAndAndroidResourse.dogsapp.ui.adapters.DoggyAdapter;
 
 
 import java.util.ArrayList;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
 
 public class BreedImageListFragment extends Fragment {
 
-
-    private static String status;
     private static ArrayList<String> doggys;
     private static DoggyAdapter adapter;
     private String raza;
@@ -31,7 +27,7 @@ public class BreedImageListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static BreedImageListFragment newInstance(ArrayList<String> doggys,String choosenBreed) {
+    public static BreedImageListFragment newInstance(ArrayList<String> doggys, String choosenBreed) {
         BreedImageListFragment fragment = new BreedImageListFragment();
         Bundle args = new Bundle();
         args.putStringArrayList("DOGS", doggys);
@@ -46,6 +42,7 @@ public class BreedImageListFragment extends Fragment {
         if (getArguments() != null) {
             doggys = getArguments().getStringArrayList("DOGS");
             raza = getArguments().getString("raza");
+
         }
     }
 

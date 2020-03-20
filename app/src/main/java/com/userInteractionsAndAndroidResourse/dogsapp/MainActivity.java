@@ -1,10 +1,8 @@
 package com.userInteractionsAndAndroidResourse.dogsapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,8 +10,9 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.userInteractionsAndAndroidResourse.dogsapp.api.APIResponse;
-import com.userInteractionsAndAndroidResourse.dogsapp.api.RetrofitClient;
+import com.userInteractionsAndAndroidResourse.dogsapp.Presenter.breedListPresenter.IViewListBreed;
+import com.userInteractionsAndAndroidResourse.dogsapp.model.api.APIResponse;
+import com.userInteractionsAndAndroidResourse.dogsapp.model.api.RetrofitClient;
 import com.userInteractionsAndAndroidResourse.dogsapp.model.BreedImageListResponse;
 import com.userInteractionsAndAndroidResourse.dogsapp.model.BreedListResponse;
 import com.userInteractionsAndAndroidResourse.dogsapp.ui.BreedImageListFragment;
@@ -25,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements IViewListBreed {
     private String choosedbreed;
     private ArrayList<String> dogs;
     private ImageButton favorite;
@@ -36,7 +35,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initializeView();
 
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
 
+
+                instanceFFragment();
+            }
+        });
 
         APIResponse service = RetrofitClient.getRetrofitInstance().create(APIResponse.class);
         Call<BreedListResponse> call = service.getBreedList();
@@ -47,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     dogs = response.body().getBreedList();
                 }
 
-                final ArrayAdapter adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, dogs);
+                final ArrayAdapter adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, dogs);                                                       //ADAPTER
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -97,10 +104,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void instanceFragment(ArrayList<String> dogs, String choosenBreed){
-        BreedImageListFragment detailFragment = BreedImageListFragment.newInstance(dogs, choosenBreed);
+    private void instanceFragment(ArrayList<String> puppies, String choosenBreed){
+        BreedImageListFragment breedimagelistFragment = BreedImageListFragment.newInstance(puppies, choosenBreed);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.vistadogs, detailFragment, "DetailFragment")
+                .replace(R.id.vistadogs, breedimagelistFragment, "DetailFragment")
                 .addToBackStack("Dog")
                 .commit();
     }
@@ -109,15 +116,21 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.tryspinner);
         favorite = findViewById(R.id.Favorite);
 
-
-
     }
 
-    private void instanceFragmentFD(ArrayList<String> dogs, String favoritesdogs){
-        BreedImageListFragment detailFragment = BreedImageListFragment.newInstance(dogs, favoritesdogs);
+    private void instanceFFragment(ArrayList<String> favorites, String favoritebreed){
+        BreedImageListFragment detailFragment = BreedImageListFragment.newInstance(favorites, favoritebreed);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.vistadogs, detailFragment, "DetailFavorites")
                 .addToBackStack("favorites")
                 .commit();
+    }
+
+    @Override
+    public void showBreedList(List<String> dogBreedList) {
+
+
+
+
     }
 }

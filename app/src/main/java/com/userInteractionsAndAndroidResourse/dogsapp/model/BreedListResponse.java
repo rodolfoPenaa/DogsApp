@@ -9,7 +9,7 @@ public class BreedListResponse {
 
     @SerializedName("message")
     private ArrayList<String> breedList;
-    private String status;
+    //     private String status;
 
     public ArrayList<String> getBreedList() {
         return breedList;

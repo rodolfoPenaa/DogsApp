@@ -13,12 +13,15 @@
         android:layout_height="wrap_content"
         />
 
-
     <ImageView
         android:id="@+id/vistaforfavDogs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imagesfavoritas" />
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </FrameLayout>

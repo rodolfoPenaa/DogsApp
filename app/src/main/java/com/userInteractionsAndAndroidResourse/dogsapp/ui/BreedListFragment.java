@@ -8,28 +8,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.Timestamp;
 import com.userInteractionsAndAndroidResourse.dogsapp.R;
+import com.userInteractionsAndAndroidResourse.dogsapp.model.FavoriteDog;
 
 
 public class BreedListFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String NAME_BREED = "param1";
+    private static final String IMAGES_DOGS = "param2";
+    private static final String TIMESTAMP = "param3";
 
 
-    private String mParam1;
-    private String mParam2;
+    private String fBreed;
+    private String fBUrl;
+    private Timestamp description;
 
     public BreedListFragment() {
 
     }
 
 
-    public static BreedListFragment newInstance(String param1, String param2) {
+    public static BreedListFragment newInstance(String fBreed, String fBUrl, Timestamp description) {
         BreedListFragment fragment = new BreedListFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(NAME_BREED, fBreed );
+        args.putString(TIMESTAMP, description);
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,8 +42,9 @@ public class BreedListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            fBreed = getArguments().getString(NAME_BREED);
+            fBUrl = getArguments().getString(IMAGES_DOGS);
+
         }
     }
 
