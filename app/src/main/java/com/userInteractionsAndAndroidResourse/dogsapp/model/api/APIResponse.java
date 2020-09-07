@@ -12,7 +12,7 @@ public interface APIResponse {
     Call<BreedListResponse> getBreedList();
 
     @GET("api/breed/{breed}/images/")
-    Call<BreedImageListResponse> getBreedImageList(@Path("breed") String breed); // nombre de variables deben ser iguales//
+    Call<BreedImageListResponse> getBreedImageList(@Path("breed") String catchedBreed); // nombre de variables deben ser iguales//
 
 
 }

@@ -1,7 +1,10 @@
-package com.userInteractionsAndAndroidResourse.dogsapp.Presenter.breedListPresenter;
+package com.userInteractionsAndAndroidResourse.dogsapp.Presenter.Presenter.BreedListPresenter;
 
 public class PresenterBreedList implements IPresenterListBreed {
 
+    public PresenterBreedList(IViewListBreed viewBreeds) {
+        this.viewBreeds = viewBreeds;
+    }
 
     IViewListBreed viewBreeds;
 

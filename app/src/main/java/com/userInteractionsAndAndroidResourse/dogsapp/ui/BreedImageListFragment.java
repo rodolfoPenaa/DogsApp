@@ -50,7 +50,7 @@ public class BreedImageListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-       View view = inflater.inflate(R.layout.fragment_breed_list,container,false);
+        View view = inflater.inflate(R.layout.fragment_breed_list,container,false);
         RecyclerView recyclerView = view.findViewById(R.id.recycledview);
         adapter = new DoggyAdapter(doggys,raza, getActivity());
         recyclerView.setAdapter(adapter);

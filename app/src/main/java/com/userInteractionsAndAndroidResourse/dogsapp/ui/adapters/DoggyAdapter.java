@@ -2,6 +2,7 @@ package com.userInteractionsAndAndroidResourse.dogsapp.ui.adapters;
 
 import android.content.Context;
 import android.net.sip.SipAudioCall;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,25 +40,30 @@ public class DoggyAdapter extends RecyclerView.Adapter<DoggyAdapter.ViewHolder> 
         this.mContex = mContex;
     }
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.vistaforDogs);
+        }
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = mLayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_breed_image_list, parent, false);
-
         return new ViewHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         String breedImageListResponse = dogs.get(position);
-
         Glide.with(holder.imageView.getContext()).load(breedImageListResponse).into(holder.imageView);
-
         holder.imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
                 CollectionReference dbFavDogs = db.collection("puppies");
                 FavoriteDog favpuppies = new FavoriteDog(raza, dogs.get(position), Timestamp.now());
                 dbFavDogs.add(favpuppies).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -66,12 +72,9 @@ public class DoggyAdapter extends RecyclerView.Adapter<DoggyAdapter.ViewHolder> 
                         Toast.makeText(mContex, "Added to Favorite", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 return true;
             }
         });
-
-
     }
 
     @Override
@@ -80,14 +83,7 @@ public class DoggyAdapter extends RecyclerView.Adapter<DoggyAdapter.ViewHolder> 
         return dogs.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imageView = itemView.findViewById(R.id.vistaforDogs);
-
-        }
+    interface ForFavorite(String theRaza, List<String> theImages, Timestamp hereNow){
+        Bundle bundleF =
     }
 }

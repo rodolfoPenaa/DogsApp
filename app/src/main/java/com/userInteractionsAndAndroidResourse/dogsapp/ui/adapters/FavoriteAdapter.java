@@ -63,8 +63,12 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     }
     public void getfavoriteDogs(List<String> favoritesBREED, List<String> favoritesURL ) {
 
-    //     final FavoriteDog[] favorites = {new FavoriteDog(raza, url, timestamp)};
+        //final FavoriteDog[] favorites = {new FavoriteDog(raza, url, timestamp)};
 
+
+        // get parent (root)
+        //get child
+        //get snapshot
 
         db.collection("puppies").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 

@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.userInteractionsAndAndroidResourse.dogsapp.Presenter.breedListPresenter.IViewListBreed;
+import com.userInteractionsAndAndroidResourse.dogsapp.Presenter.Presenter.BreedListPresenter.IViewListBreed;
 import com.userInteractionsAndAndroidResourse.dogsapp.model.api.APIResponse;
 import com.userInteractionsAndAndroidResourse.dogsapp.model.api.RetrofitClient;
 import com.userInteractionsAndAndroidResourse.dogsapp.model.BreedImageListResponse;
@@ -24,24 +24,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements IViewListBreed {
+public class MainActivity extends AppCompatActivity{
     private String choosedbreed;
     private ArrayList<String> dogs;
-    private ImageButton favorite;
+    private ImageButton favoritebtn;
     Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initializeView();
 
-        favorite.setOnClickListener(new View.OnClickListener() {
+        favoritebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
 
-
-                instanceFFragment();
+                //nueva clase(firebasedata) para solicitar los datos y traerlos acá.
+                // metodo con info de firebase
+               // instanceFFragment();
             }
         });
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements IViewListBreed {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-
+                    Toast.makeText(getApplicationContext(), "Seleccione una raza", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -80,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements IViewListBreed {
                 Toast.makeText(MainActivity.this, "Fail Try Again", Toast.LENGTH_LONG).show();
             }
         });
-
 
 
     }
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements IViewListBreed {
 
     public void initializeView(){
         spinner = findViewById(R.id.tryspinner);
-        favorite = findViewById(R.id.Favorite);
+        favoritebtn = findViewById(R.id.Favorite);
 
     }
 
@@ -126,11 +127,16 @@ public class MainActivity extends AppCompatActivity implements IViewListBreed {
                 .commit();
     }
 
-    @Override
+  /*  @Override
     public void showBreedList(List<String> dogBreedList) {
 
 
 
 
     }
+
+    @Override
+    public void showMessageInView(String message) {
+
+    }*/
 }

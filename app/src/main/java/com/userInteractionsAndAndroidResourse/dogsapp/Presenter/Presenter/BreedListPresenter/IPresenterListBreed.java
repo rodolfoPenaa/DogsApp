@@ -1,4 +1,4 @@
-package com.userInteractionsAndAndroidResourse.dogsapp.Presenter.breedListPresenter;
+package com.userInteractionsAndAndroidResourse.dogsapp.Presenter.Presenter.BreedListPresenter;
 
 public interface IPresenterListBreed {
 
